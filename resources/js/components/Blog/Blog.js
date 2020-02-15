@@ -5,10 +5,11 @@ import Text from '../Text'
 
 const styles = StyleSheet.create({
     blogContainer: {
+        minHeight: '100%',
         padding: '4rem 0',
         backgroundImage: 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
         fontSize: '1.25rem',
-        overflow: 'hidden',
+        // overflow: 'hidden',
     },
     title: {
         width: '100%',
@@ -69,7 +70,12 @@ const Blog = props => {
                     }
                 }))
             })
-            .then(setLoading(false))
+            .then(
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
+            )
+            .catch(error => console.log(error))
     }
 
     useEffect(() => {
@@ -77,39 +83,41 @@ const Blog = props => {
     }, [])
 
     return (
-        <>
-            {loading ? <div>...Loading</div> :
 
-                <div className={css(styles.blogContainer)}>
-                    {showItem === false ?
-                        <>
-                            <h2 className={css(styles.title)}>Blog</h2>
-                            <div className={css(styles.blogItemsContainer)}>
-                                {items.map(article => (
-                                    <BlogItem
-                                        key={`blog_item_${article.id}`}
-                                        showItem={setShowItem}
-                                        id={article.id}
-                                        title={article.title}
-                                        img_url={article.item_photo_path}
-                                    />
-                                ))}
-                            </div>
-                        </>
-                        :
-                        <>
-                            <div className={css(styles.navigateBtn, styles.back)} onClick={() => setShowItem(false)}>
-                                <img className={css(styles.btn)} src='./img/navIcons/back.svg' />
-                            </div>
-                            <Text title={items[showItem].title}>
-                                {items[showItem].article}
+        <div className={css(styles.blogContainer)}>
+            <h2 className={css(styles.title)}>Blog</h2>
+            {loading ? <h1>...Loading</h1> :
+
+
+                showItem === false ?
+                    <>
+                        <div className={css(styles.blogItemsContainer)}>
+                            {items.map(article => (
+                                <BlogItem
+                                    key={`blog_item_${article.id}`}
+                                    showItem={setShowItem}
+                                    id={article.id}
+                                    title={article.title}
+                                    img_url={article.item_photo_path}
+                                />
+                            ))}
+                        </div>
+                    </>
+                    :
+                    <>
+                        <div className={css(styles.navigateBtn, styles.back)} onClick={() => setShowItem(false)}>
+                            <img className={css(styles.btn)} src='./img/navIcons/back.svg' />
+                        </div>
+                        {items[showItem].texts.map(textItem => (
+                            <Text key={`text_item_${textItem.id}`} title={textItem.title}>
+                                {/* <p>{textItem.content.replace(/\n/g, <br />)}</p> */}
+                                {textItem.content}
                             </Text>
-                        </>
-                    }
-                </div>
-
+                        ))}
+                    </>
             }
-        </>
+
+        </div>
     )
 }
 

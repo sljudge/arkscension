@@ -50,16 +50,16 @@ const NavLink = props => {
         e.current.style.display = e.current.style.display === 'none' ? 'block' : 'none'
         switch (e.current.id) {
             case 'Meditation':
-                e.current.style.backgroundColor = 'rgba(112, 123, 225,0.7)'
+                e.current.style.backgroundColor = 'rgba(112, 123, 225,0.95)' //0.7
                 break
             case 'Bowen Therapy':
-                e.current.style.backgroundColor = 'rgba(118, 225, 112,0.7)'
+                e.current.style.backgroundColor = 'rgba(118, 225, 112,0.95)' //0.7
                 break
-            case 'Energy Therapy':
-                e.current.style.backgroundColor = 'rgba(225, 221, 112,0.7)'
+            case 'Energy Balancing':
+                e.current.style.backgroundColor = 'rgba(225, 221, 112,0.95)' //0.7
                 break
-            case 'Blog':
-                e.current.style.backgroundColor = 'rgba(112, 225, 214, 0.7)'
+            case 'Sound Healing':
+                e.current.style.backgroundColor = 'rgba(112, 225, 214, 0.95)' //0.7
                 break
             default: null
 
@@ -69,34 +69,30 @@ const NavLink = props => {
     let Icon
     switch (icon) {
         case 'leaf':
-            // Icon = <i className="fas fa-leaf"></i>
             Icon = (
-                <div className={css(styles.iconContainer)} style={{ backgroundColor: 'rgba(118, 225, 112,0.4)' }}>
+                <div className={css(styles.iconContainer)} style={{ backgroundColor: 'rgba(118, 225, 112,0.7)' }}>
                     <img src="./img/navIcons/leaf.svg" />
                 </div>
             )
             break
         case 'meditation':
-            // Icon = <i className="fas fa-praying-hands"></i>
             Icon = (
-                <div className={css(styles.iconContainer)} style={{ backgroundColor: 'rgba(112, 123, 225,0.4)' }}>
+                <div className={css(styles.iconContainer)} style={{ backgroundColor: 'rgba(112, 123, 225,0.7)' }}>
                     <img src="./img/navIcons/hands.svg" />
                 </div>
             )
             break
         case 'energy':
-            // Icon = <i className="fas fa-sun"></i>
             Icon = (
-                <div className={css(styles.iconContainer)} style={{ backgroundColor: 'rgba(225, 221, 112,0.4)' }}>
+                <div className={css(styles.iconContainer)} style={{ backgroundColor: 'rgba(225, 221, 112,0.7)' }}>
                     <img src="./img/navIcons/sun.svg" />
                 </div>
             )
             break
-        case 'blog':
-            // Icon = <i className="fas fa-book-reader"></i>
+        case 'bird':
             Icon = (
-                <div className={css(styles.iconContainer)} style={{ backgroundColor: 'rgba(112, 225, 214, 0.4)' }}>
-                    <img src="./img/navIcons/blog.svg" />
+                <div className={css(styles.iconContainer)} style={{ backgroundColor: 'rgba(112, 225, 214, 0.7)' }}>
+                    <img src="./img/navIcons/bird.svg" />
                 </div>
             )
             break

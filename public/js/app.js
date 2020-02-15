@@ -34639,7 +34639,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var App = function App() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('blog'),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       show = _useState2[0],
       _setShow = _useState2[1];
@@ -34647,33 +34647,33 @@ var App = function App() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Cover__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Nav__WEBPACK_IMPORTED_MODULE_2__["default"], {
     show: show
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    title: 'Meditation',
-    icon: 'meditation',
-    setShow: function setShow() {
-      return _setShow('meditation');
-    }
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: 'Bowen Therapy',
     icon: 'leaf',
     setShow: function setShow() {
       return _setShow('bowen');
     }
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    title: 'Sound Healing',
+    icon: 'bird',
+    setShow: function setShow() {
+      return _setShow(true);
+    }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logo__WEBPACK_IMPORTED_MODULE_4__["default"], {
     setShow: function setShow() {
-      return _setShow(false);
+      return _setShow('blog');
     },
     show: show
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    title: 'Energy Therapy',
+    title: 'Energy Balancing',
     icon: 'energy',
     setShow: function setShow() {
       return _setShow(true);
     }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    title: 'Blog',
-    icon: 'blog',
+    title: 'Meditation',
+    icon: 'meditation',
     setShow: function setShow() {
-      return _setShow('blog');
+      return _setShow('meditation');
     }
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ContentPanel__WEBPACK_IMPORTED_MODULE_5__["default"], {
     show: show
@@ -34712,10 +34712,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var styles = aphrodite__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
   blogContainer: {
+    minHeight: '100%',
     padding: '4rem 0',
     backgroundImage: 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
-    fontSize: '1.25rem',
-    overflow: 'hidden'
+    fontSize: '1.25rem' // overflow: 'hidden',
+
   },
   title: {
     width: '100%',
@@ -34786,17 +34787,21 @@ var Blog = function Blog(props) {
           return article;
         }
       }));
-    }).then(setLoading(false));
+    }).then(setTimeout(function () {
+      setLoading(false);
+    }, 1000))["catch"](function (error) {
+      return console.log(error);
+    });
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     getItems();
   }, []);
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "...Loading") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: Object(aphrodite__WEBPACK_IMPORTED_MODULE_1__["css"])(styles.blogContainer)
-  }, showItem === false ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
     className: Object(aphrodite__WEBPACK_IMPORTED_MODULE_1__["css"])(styles.title)
-  }, "Blog"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Blog"), loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "...Loading") : showItem === false ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: Object(aphrodite__WEBPACK_IMPORTED_MODULE_1__["css"])(styles.blogItemsContainer)
   }, items.map(function (article) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BlogItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -34814,9 +34819,12 @@ var Blog = function Blog(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: Object(aphrodite__WEBPACK_IMPORTED_MODULE_1__["css"])(styles.btn),
     src: "./img/navIcons/back.svg"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Text__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    title: items[showItem].title
-  }, items[showItem].article))));
+  })), items[showItem].texts.map(function (textItem) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      key: "text_item_".concat(textItem.id),
+      title: textItem.title
+    }, textItem.content);
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Blog);
@@ -35069,7 +35077,8 @@ var styles = aphrodite__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     minHeight: '100vh',
     margin: '0',
     padding: '0',
-    backgroundImage: 'url(./img/tree.jpg)',
+    // backgroundImage: 'url(./img/tree.jpg)',
+    backgroundImage: 'url(./img/spring.jpg)',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat'
@@ -35136,14 +35145,16 @@ var styles = aphrodite__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'contain',
     backgroundPosition: 'center',
-    backgroundColor: 'rgba(225,112,118, 0.8)',
+    // backgroundColor: 'rgba(225,112,118, 0.8)',
+    backgroundColor: 'rgba(34,139,34, 0.8)',
     borderRadius: '100%',
     border: '1px solid rgba(256,256,256,0.4)',
-    transition: 'all 1.5s'
+    transition: 'all 1.5s',
+    cursor: 'pointer'
   },
   open: {
-    cursor: 'pointer',
-    backgroundColor: '#fbe0c5'
+    // backgroundColor: '#fbe0c5',
+    backgroundColor: 'rgba(152,251,152, 0.9)'
   }
 });
 
@@ -35324,9 +35335,8 @@ var styles = aphrodite__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     justifyContent: "center",
     width: '100%',
     height: containerHeight,
-    // backgroundColor: 'rgba(30,30,30,0.8)',
-    backgroundColor: 'rgba(256,256,256,0.3)',
-    color: 'rgba(30,30,30,0.2)',
+    backgroundColor: 'rgba(256,256,256,0.8)',
+    // backgroundColor: 'rgba(256,256,256,0.3)',
     // color: 'rgba(256,256,256,0.2)',
     borderRadius: '50% 50% 0 0',
     transition: 'all 1.5s'
@@ -35359,7 +35369,8 @@ var styles = aphrodite__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     width: '100%',
     textAlign: 'center',
     fontWeight: '400',
-    color: 'whitesmoke',
+    // color: 'whitesmoke',
+    color: 'rgba(30,30,30,0.8)',
     transition: 'all 2s'
   },
   noTitle: {
@@ -35474,19 +35485,23 @@ var NavLink = function NavLink(props) {
 
     switch (e.current.id) {
       case 'Meditation':
-        e.current.style.backgroundColor = 'rgba(112, 123, 225,0.7)';
+        e.current.style.backgroundColor = 'rgba(112, 123, 225,0.95)'; //0.7
+
         break;
 
       case 'Bowen Therapy':
-        e.current.style.backgroundColor = 'rgba(118, 225, 112,0.7)';
+        e.current.style.backgroundColor = 'rgba(118, 225, 112,0.95)'; //0.7
+
         break;
 
-      case 'Energy Therapy':
-        e.current.style.backgroundColor = 'rgba(225, 221, 112,0.7)';
+      case 'Energy Balancing':
+        e.current.style.backgroundColor = 'rgba(225, 221, 112,0.95)'; //0.7
+
         break;
 
-      case 'Blog':
-        e.current.style.backgroundColor = 'rgba(112, 225, 214, 0.7)';
+      case 'Sound Healing':
+        e.current.style.backgroundColor = 'rgba(112, 225, 214, 0.95)'; //0.7
+
         break;
 
       default:
@@ -35498,11 +35513,10 @@ var NavLink = function NavLink(props) {
 
   switch (icon) {
     case 'leaf':
-      // Icon = <i className="fas fa-leaf"></i>
       Icon = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: Object(aphrodite__WEBPACK_IMPORTED_MODULE_1__["css"])(styles.iconContainer),
         style: {
-          backgroundColor: 'rgba(118, 225, 112,0.4)'
+          backgroundColor: 'rgba(118, 225, 112,0.7)'
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "./img/navIcons/leaf.svg"
@@ -35510,11 +35524,10 @@ var NavLink = function NavLink(props) {
       break;
 
     case 'meditation':
-      // Icon = <i className="fas fa-praying-hands"></i>
       Icon = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: Object(aphrodite__WEBPACK_IMPORTED_MODULE_1__["css"])(styles.iconContainer),
         style: {
-          backgroundColor: 'rgba(112, 123, 225,0.4)'
+          backgroundColor: 'rgba(112, 123, 225,0.7)'
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "./img/navIcons/hands.svg"
@@ -35522,26 +35535,24 @@ var NavLink = function NavLink(props) {
       break;
 
     case 'energy':
-      // Icon = <i className="fas fa-sun"></i>
       Icon = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: Object(aphrodite__WEBPACK_IMPORTED_MODULE_1__["css"])(styles.iconContainer),
         style: {
-          backgroundColor: 'rgba(225, 221, 112,0.4)'
+          backgroundColor: 'rgba(225, 221, 112,0.7)'
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "./img/navIcons/sun.svg"
       }));
       break;
 
-    case 'blog':
-      // Icon = <i className="fas fa-book-reader"></i>
+    case 'bird':
       Icon = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: Object(aphrodite__WEBPACK_IMPORTED_MODULE_1__["css"])(styles.iconContainer),
         style: {
-          backgroundColor: 'rgba(112, 225, 214, 0.4)'
+          backgroundColor: 'rgba(112, 225, 214, 0.7)'
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "./img/navIcons/blog.svg"
+        src: "./img/navIcons/bird.svg"
       }));
       break;
 
@@ -35792,7 +35803,8 @@ var styles = aphrodite__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     textAlign: 'justify',
     fontSize: '1.25rem',
     lineHeight: '3rem',
-    fontWeight: '450'
+    fontWeight: '450',
+    whiteSpace: 'pre-wrap'
   },
   title: {
     width: '100%',
@@ -35839,7 +35851,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\dev\arkscension_back_end\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\dev\arkscension\resources\js\app.js */"./resources/js/app.js");
 
 
 /***/ })

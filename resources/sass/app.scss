@@ -1,1 +1,40 @@
-//
+//NAV
+.adminNav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 5rem;
+    padding: 0.5rem;
+    background-color: rgba(256,256,256,0.7);
+}
+.navLink{
+    padding: 0 1rem;
+}
+
+//BLOG
+.blogListItem{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+}
+.blog-title-input{
+    width: 100%;
+    font-size: 2rem;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    text-align: center;
+}
+.blog-text-area{
+    width: 100%;
+    padding: 0.5rem;
+    min-height: 20rem;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+}
+.blog-article-submit-btn{
+    background-color: rgba(34,139,34, 0.7);
+    color: white;
+    padding: 0.5rem;
+    font-size: 1.25rem;
+}

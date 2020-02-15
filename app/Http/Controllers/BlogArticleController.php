@@ -8,14 +8,25 @@ use App\BlogArticle;
 class BlogArticleController extends Controller
 {
     /**
+     * Display blog articles for admin area
+     */
+    public function get()
+    {
+        $articles = BlogArticle::with('texts')->with('mandalas')->get();
+        return $articles;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $items = BlogArticle::all();
-        return $items;
+        // $items = BlogArticle::with('texts')->with('mandalas')->get();
+        // return $items;
+        $articles = BlogArticle::with('texts')->with('mandalas')->get();
+        return view('blog/articlesList', compact('articles'));
     }
 
     /**
@@ -36,7 +47,7 @@ class BlogArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->title);
     }
 
     /**
@@ -47,7 +58,8 @@ class BlogArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $article = BlogArticle::with('texts')->with('mandalas')->findOrFail($id);
+        return view('blog/article', compact('article'));
     }
 
     /**
@@ -83,4 +95,6 @@ class BlogArticleController extends Controller
     {
         //
     }
+
+    
 }

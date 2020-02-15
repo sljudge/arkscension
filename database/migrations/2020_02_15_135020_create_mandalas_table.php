@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBlogArticlesTable extends Migration
+class CreateMandalasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateBlogArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('blog_articles', function (Blueprint $table){
+        Schema::create('mandalas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->string('item_photo_path')->nullable();
+            $table->integer('type');
+            $table->integer('blog_article_id')->nullable();
+            $table->integer('order');
+            $table->mediumText('content');
+            $table->string('color');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateBlogArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blog_articles');
+        Schema::dropIfExists('mandalas');
     }
 }

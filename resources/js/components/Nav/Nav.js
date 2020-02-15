@@ -14,9 +14,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         width: '100%',
         height: containerHeight,
-        // backgroundColor: 'rgba(30,30,30,0.8)',
-        backgroundColor: 'rgba(256,256,256,0.3)',
-        color: 'rgba(30,30,30,0.2)',
+        backgroundColor: 'rgba(256,256,256,0.8)',
+        // backgroundColor: 'rgba(256,256,256,0.3)',
         // color: 'rgba(256,256,256,0.2)',
         borderRadius: '50% 50% 0 0',
         transition: 'all 1.5s'
@@ -49,7 +48,8 @@ const styles = StyleSheet.create({
         width: '100%',
         textAlign: 'center',
         fontWeight: '400',
-        color: 'whitesmoke',
+        // color: 'whitesmoke',
+        color: 'rgba(30,30,30,0.8)',
         transition: 'all 2s'
     },
     noTitle: {

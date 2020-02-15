@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
         fontSize: '1.25rem',
         lineHeight: '3rem',
         fontWeight: '450',
+        whiteSpace: 'pre-wrap',
     },
     title: {
         width: '100%',

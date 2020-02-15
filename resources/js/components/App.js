@@ -10,17 +10,17 @@ import Bowen from './Bowen'
 import Blog from './Blog'
 
 const App = () => {
-    const [show, setShow] = useState('blog')
+    const [show, setShow] = useState(false)
 
     return (
         <>
             <Cover>
                 <Nav show={show}>
-                    <NavLink title={'Meditation'} icon={'meditation'} setShow={() => setShow('meditation')} />
                     <NavLink title={'Bowen Therapy'} icon={'leaf'} setShow={() => setShow('bowen')} />
-                    <Logo setShow={() => setShow(false)} show={show} />
-                    <NavLink title={'Energy Therapy'} icon={'energy'} setShow={() => setShow(true)} />
-                    <NavLink title={'Blog'} icon={'blog'} setShow={() => setShow('blog')} />
+                    <NavLink title={'Sound Healing'} icon={'bird'} setShow={() => setShow(true)} />
+                    <Logo setShow={() => setShow('blog')} show={show} />
+                    <NavLink title={'Energy Balancing'} icon={'energy'} setShow={() => setShow(true)} />
+                    <NavLink title={'Meditation'} icon={'meditation'} setShow={() => setShow('meditation')} />
                 </Nav>
                 <ContentPanel show={show}>
                     {show === 'meditation' && <Meditation />}

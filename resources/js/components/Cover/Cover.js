@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
         minHeight: '100vh',
         margin: '0',
         padding: '0',
-        backgroundImage: 'url(./img/tree.jpg)',
+        // backgroundImage: 'url(./img/tree.jpg)',
+        backgroundImage: 'url(./img/spring.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'

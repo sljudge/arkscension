@@ -11,14 +11,16 @@ const styles = StyleSheet.create({
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'contain',
         backgroundPosition: 'center',
-        backgroundColor: 'rgba(225,112,118, 0.8)',
+        // backgroundColor: 'rgba(225,112,118, 0.8)',
+        backgroundColor: 'rgba(34,139,34, 0.8)',
         borderRadius: '100%',
         border: '1px solid rgba(256,256,256,0.4)',
-        transition: 'all 1.5s'
+        transition: 'all 1.5s',
+        cursor: 'pointer',
     },
     open: {
-        cursor: 'pointer',
-        backgroundColor: '#fbe0c5',
+        // backgroundColor: '#fbe0c5',
+        backgroundColor: 'rgba(152,251,152, 0.9)',
     }
 })
 
