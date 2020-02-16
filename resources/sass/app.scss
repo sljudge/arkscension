@@ -5,15 +5,35 @@
     align-items: center;
     width: 100vw;
     height: 5rem;
-    padding: 0.5rem;
+    padding: 3rem;
     background-color: rgba(256,256,256,0.7);
 }
 .navLink{
     padding: 0 1rem;
 }
-
+//FORM
+.form-label{
+    font-size: 1.5rem;
+}
+.img-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.form-img--container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 15rem;
+}
+.form-img{
+    width: 100%;
+    height: auto;
+}
 //BLOG
-.blogListItem{
+.blog-list-item{
     display: flex;
     justify-content: space-between;
     padding: 0.75rem;
@@ -22,15 +42,22 @@
     width: 100%;
     font-size: 2rem;
     padding: 1rem;
-    margin: 0.5rem 0;
     text-align: center;
 }
 .blog-text-area{
     width: 100%;
     padding: 0.5rem;
-    min-height: 20rem;
     font-size: 1rem;
     font-family: 'Roboto', sans-serif;
+    &--text{
+        min-height: 20rem;
+    }
+    &--mandala{
+        min-height: 10rem;
+    }
+}
+.blog-mandala-head{
+    padding: 1rem;
 }
 .blog-article-submit-btn{
     background-color: rgba(34,139,34, 0.7);

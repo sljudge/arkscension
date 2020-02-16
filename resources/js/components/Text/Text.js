@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '4rem 0',
+        // padding: '4rem 0',
         backgroundImage: 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
 
     },

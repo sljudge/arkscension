@@ -15,8 +15,13 @@ Route::get('/', function () {
     return view('index');
 });
 Route::get('/admin', function () {
-    return view('admin');
+    return view('layouts/admin');
 });
 // BLOG
-// Route::get('/admin/blog/view', 'BlogArticleController@view');
 Route::resource('/admin/blog', 'BlogArticleController');
+
+//TEXTS
+Route::resource('/admin/texts', 'TextController');
+
+//MANDALAS
+Route::resource('/admin/mandalas', 'MandalaController');

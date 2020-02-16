@@ -27,7 +27,7 @@ class TextsTableSeeder extends Seeder
                 DB::table('texts')->insert([
                     'type' => 5,
                     'blog_article_id' => $i,
-                    'order' => 3,
+                    'order' => 2,
                     'content' => $faker->paragraphs($nb = rand(1,5), $asText = true)
                 ]);
             }

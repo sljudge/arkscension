@@ -41,6 +41,7 @@
 <body>
 
     @include('inc/nav')
+    @include('inc/messages')
 
     <div class='container'>
 

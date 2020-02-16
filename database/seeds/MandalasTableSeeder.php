@@ -20,7 +20,7 @@ class MandalasTableSeeder extends Seeder
                 DB::table('mandalas')->insert([
                     'type' => 5,
                     'blog_article_id' => $i,
-                    'order' => 2,
+                    'order' => 1,
                     'content' => $faker->paragraphs($nb = 1, $asText = true),
                     'color' => 'blue'
                 ]);

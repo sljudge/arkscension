@@ -35795,7 +35795,7 @@ var styles = aphrodite__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '4rem 0',
+    // padding: '4rem 0',
     backgroundImage: 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)'
   },
   text: {
@@ -35844,14 +35844,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/app.scss":
+/*!*********************************!*\
+  !*** ./resources/sass/app.scss ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!***********************************!*\
-  !*** multi ./resources/js/app.js ***!
-  \***********************************/
+/*!*************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\dev\arkscension\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\dev\arkscension\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\dev\arkscension\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

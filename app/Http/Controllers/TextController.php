@@ -3,19 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\BlogArticle;
 
-class BlogArticleController extends Controller
+class TextController extends Controller
 {
-    /**
-     * Display blog articles for admin area
-     */
-    public function get()
-    {
-        $articles = BlogArticle::with('texts')->with('mandalas')->get();
-        return $articles;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,10 +13,7 @@ class BlogArticleController extends Controller
      */
     public function index()
     {
-        // $items = BlogArticle::with('texts')->with('mandalas')->get();
-        // return $items;
-        $articles = BlogArticle::with('texts')->with('mandalas')->get();
-        return view('blog/articlesList', compact('articles'));
+        //
     }
 
     /**
@@ -47,7 +34,7 @@ class BlogArticleController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump($request->title);
+        dd($request->content);
     }
 
     /**
@@ -58,7 +45,7 @@ class BlogArticleController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -69,20 +56,7 @@ class BlogArticleController extends Controller
      */
     public function edit($id)
     {
-        $article = BlogArticle::with('texts')->with('mandalas')->findOrFail($id);
-        $numberOfElements = sizeof($article->texts) + sizeof($article->mandalas);
-        $order = [
-            'id' => $article->id,
-            'title' => $article->title,
-            'item_photo_path' => $article->item_photo_path
-        ];
-        foreach($article->texts as $text){
-            $order[$text->order] = $text;
-        }
-        foreach($article->mandalas as $mandala){
-            $order[$mandala->order] = $mandala;
-        }
-        return view('blog/article', compact('order'));
+        //
     }
 
     /**
@@ -94,10 +68,7 @@ class BlogArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $item = BlogArticle::findOrFail($id);
-        $item->title = $request->title;
-        $item->save();
-        return redirect('/admin/blog/'.$id.'/edit')->with('success', 'blog-title');
+        //
     }
 
     /**
@@ -110,6 +81,4 @@ class BlogArticleController extends Controller
     {
         //
     }
-
-    
 }
