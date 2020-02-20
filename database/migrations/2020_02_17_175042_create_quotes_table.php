@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMandalasTable extends Migration
+class CreateQuotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateMandalasTable extends Migration
      */
     public function up()
     {
-        Schema::create('mandalas', function (Blueprint $table) {
+        Schema::create('quotes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('type');
             $table->integer('blog_article_id')->nullable();
@@ -31,6 +31,6 @@ class CreateMandalasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mandalas');
+        Schema::dropIfExists('quotes');
     }
 }

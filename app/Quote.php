@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Mandala extends Model
+class Quote extends Model
 {
     public function itemable()
     {

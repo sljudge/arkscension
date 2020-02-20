@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Text;
 
 class TextController extends Controller
 {
@@ -68,7 +69,11 @@ class TextController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = Text::findOrFail($id);
+        $item->content = $request->content;
+        $item->save();
+        $DOM_id = 'content-text-'.$id;
+        return back()->with('success', $DOM_id);
     }
 
     /**
@@ -79,6 +84,9 @@ class TextController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $text = Text::findOrFail($id);
+        $text->delete();
+
+        return back()->with('delete', 'Text has been deleted');
     }
 }

@@ -11,8 +11,8 @@ class BlogArticle extends Model
         return $this->hasMany('App\Text');
     }
 
-    public function mandalas()
+    public function quotes()
     {
-        return $this->hasMany('App\Mandala');
+        return $this->hasMany('App\Quote');
     }
 }

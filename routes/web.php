@@ -24,4 +24,4 @@ Route::resource('/admin/blog', 'BlogArticleController');
 Route::resource('/admin/texts', 'TextController');
 
 //MANDALAS
-Route::resource('/admin/mandalas', 'MandalaController');
+Route::resource('/admin/quotes', 'QuoteController');

@@ -3,7 +3,7 @@ import { StyleSheet, css } from 'aphrodite'
 
 
 const BlogItem = props => {
-    const { showItem, id, title, img_url } = { ...props }
+    const { setShowItem, id, title, img_url } = { ...props }
 
     const styles = StyleSheet.create({
         blogItem: {
@@ -40,7 +40,7 @@ const BlogItem = props => {
         }
     })
     return (
-        <div className={css(styles.blogItem)} onClick={() => showItem(id - 1)}>
+        <div className={css(styles.blogItem)} onClick={() => setShowItem(id - 1)}>
             <div className={css(styles.blogImage)} />
             <div className={css(styles.blogTitle)}>{title}</div>
         </div>

@@ -12,7 +12,7 @@ class BlogArticleController extends Controller
      */
     public function get()
     {
-        $articles = BlogArticle::with('texts')->with('mandalas')->get();
+        $articles = BlogArticle::with('texts')->with('quotes')->get();
         return $articles;
     }
 
@@ -23,9 +23,7 @@ class BlogArticleController extends Controller
      */
     public function index()
     {
-        // $items = BlogArticle::with('texts')->with('mandalas')->get();
-        // return $items;
-        $articles = BlogArticle::with('texts')->with('mandalas')->get();
+        $articles = BlogArticle::with('texts')->with('quotes')->get();
         return view('blog/articlesList', compact('articles'));
     }
 
@@ -69,8 +67,8 @@ class BlogArticleController extends Controller
      */
     public function edit($id)
     {
-        $article = BlogArticle::with('texts')->with('mandalas')->findOrFail($id);
-        $numberOfElements = sizeof($article->texts) + sizeof($article->mandalas);
+        $article = BlogArticle::with('texts')->with('quotes')->findOrFail($id);
+        $numberOfElements = sizeof($article->texts) + sizeof($article->quotes);
         $order = [
             'id' => $article->id,
             'title' => $article->title,
@@ -79,8 +77,8 @@ class BlogArticleController extends Controller
         foreach($article->texts as $text){
             $order[$text->order] = $text;
         }
-        foreach($article->mandalas as $mandala){
-            $order[$mandala->order] = $mandala;
+        foreach($article->quotes as $quote){
+            $order[$quote->order] = $quote;
         }
         return view('blog/article', compact('order'));
     }
@@ -97,7 +95,7 @@ class BlogArticleController extends Controller
         $item = BlogArticle::findOrFail($id);
         $item->title = $request->title;
         $item->save();
-        return redirect('/admin/blog/'.$id.'/edit')->with('success', 'blog-title');
+        return back()->with('success', 'blog-title');
     }
 
     /**

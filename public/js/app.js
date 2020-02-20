@@ -34659,9 +34659,7 @@ var App = function App() {
       return _setShow(true);
     }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Logo__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    setShow: function setShow() {
-      return _setShow('blog');
-    },
+    setShow: _setShow,
     show: show
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: 'Energy Balancing',
@@ -34698,6 +34696,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var aphrodite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! aphrodite */ "./node_modules/aphrodite/es/index.js");
 /* harmony import */ var _BlogItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../BlogItem */ "./resources/js/components/BlogItem/index.js");
 /* harmony import */ var _Text__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Text */ "./resources/js/components/Text/index.js");
+/* harmony import */ var _Quote__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Quote */ "./resources/js/components/Quote/index.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -34705,6 +34712,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -34758,15 +34766,20 @@ var Blog = function Blog(props) {
       showItem = _useState2[0],
       setShowItem = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
       _useState4 = _slicedToArray(_useState3, 2),
-      items = _useState4[0],
-      setItems = _useState4[1];
+      order = _useState4[0],
+      setOrder = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      loading = _useState6[0],
-      setLoading = _useState6[1];
+      items = _useState6[0],
+      setItems = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState8 = _slicedToArray(_useState7, 2),
+      loading = _useState8[0],
+      setLoading = _useState8[1];
 
   var getItems = function getItems() {
     fetch("/api/blog_articles", {
@@ -34797,6 +34810,15 @@ var Blog = function Blog(props) {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     getItems();
   }, []);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    if (showItem !== false) {
+      var itemContents = [].concat(_toConsumableArray(items[showItem].texts), _toConsumableArray(items[showItem].quotes));
+      itemContents.sort(function (a, b) {
+        return a.order - b.order;
+      });
+      setOrder(itemContents);
+    }
+  }, [showItem]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: Object(aphrodite__WEBPACK_IMPORTED_MODULE_1__["css"])(styles.blogContainer)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
@@ -34806,7 +34828,7 @@ var Blog = function Blog(props) {
   }, items.map(function (article) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BlogItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
       key: "blog_item_".concat(article.id),
-      showItem: setShowItem,
+      setShowItem: setShowItem,
       id: article.id,
       title: article.title,
       img_url: article.item_photo_path
@@ -34814,16 +34836,23 @@ var Blog = function Blog(props) {
   }))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: Object(aphrodite__WEBPACK_IMPORTED_MODULE_1__["css"])(styles.navigateBtn, styles.back),
     onClick: function onClick() {
-      return setShowItem(false);
+      setShowItem(false);
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: Object(aphrodite__WEBPACK_IMPORTED_MODULE_1__["css"])(styles.btn),
     src: "./img/navIcons/back.svg"
-  })), items[showItem].texts.map(function (textItem) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Text__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      key: "text_item_".concat(textItem.id),
-      title: textItem.title
-    }, textItem.content);
+  })), !!order && order.map(function (item) {
+    if (item.color) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Quote__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        key: "m_".concat(item.id),
+        color: item.color
+      }, item.content);
+    } else {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Text__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        key: "t_".concat(item.id),
+        title: item.title
+      }, item.content);
+    }
   })));
 };
 
@@ -34869,7 +34898,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var BlogItem = function BlogItem(props) {
   var _props = _objectSpread({}, props),
-      showItem = _props.showItem,
+      setShowItem = _props.setShowItem,
       id = _props.id,
       title = _props.title,
       img_url = _props.img_url;
@@ -34911,7 +34940,7 @@ var BlogItem = function BlogItem(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: Object(aphrodite__WEBPACK_IMPORTED_MODULE_1__["css"])(styles.blogItem),
     onClick: function onClick() {
-      return showItem(id - 1);
+      return setShowItem(id - 1);
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: Object(aphrodite__WEBPACK_IMPORTED_MODULE_1__["css"])(styles.blogImage)
@@ -35163,9 +35192,19 @@ var Logo = function Logo(props) {
       setShow = _props.setShow,
       show = _props.show;
 
+  var toggleShow = function toggleShow() {
+    if (show) {
+      setShow(false);
+    } else {
+      setShow('blog');
+    }
+  };
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: Object(aphrodite__WEBPACK_IMPORTED_MODULE_1__["css"])(styles.logoContainer, show && styles.open),
-    onClick: setShow
+    onClick: function onClick() {
+      return toggleShow();
+    }
   });
 };
 

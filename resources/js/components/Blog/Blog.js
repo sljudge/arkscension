@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 import BlogItem from '../BlogItem'
 import Text from '../Text'
+import Quote from '../Quote'
 
 const styles = StyleSheet.create({
     blogContainer: {
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
 
 const Blog = props => {
     const [showItem, setShowItem] = useState(false)
+    const [order, setOrder] = useState(null)
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -82,6 +84,15 @@ const Blog = props => {
         getItems()
     }, [])
 
+    useEffect(() => {
+        if (showItem !== false) {
+            const itemContents = [...items[showItem].texts, ...items[showItem].quotes]
+            itemContents.sort((a, b) => a.order - b.order)
+            setOrder(itemContents)
+        }
+    }, [showItem])
+
+
     return (
 
         <div className={css(styles.blogContainer)}>
@@ -95,7 +106,7 @@ const Blog = props => {
                             {items.map(article => (
                                 <BlogItem
                                     key={`blog_item_${article.id}`}
-                                    showItem={setShowItem}
+                                    setShowItem={setShowItem}
                                     id={article.id}
                                     title={article.title}
                                     img_url={article.item_photo_path}
@@ -105,15 +116,20 @@ const Blog = props => {
                     </>
                     :
                     <>
-                        <div className={css(styles.navigateBtn, styles.back)} onClick={() => setShowItem(false)}>
+                        <div className={css(styles.navigateBtn, styles.back)} onClick={() => { setShowItem(false) }}>
                             <img className={css(styles.btn)} src='./img/navIcons/back.svg' />
                         </div>
-                        {items[showItem].texts.map(textItem => (
-                            <Text key={`text_item_${textItem.id}`} title={textItem.title}>
-                                {/* <p>{textItem.content.replace(/\n/g, <br />)}</p> */}
-                                {textItem.content}
-                            </Text>
-                        ))}
+                        {!!order && order.map(item => {
+                            if (item.color) {
+                                return (
+                                    <Quote key={`m_${item.id}`} color={item.color}>{item.content}</Quote>
+                                )
+                            } else {
+                                return (
+                                    <Text key={`t_${item.id}`} title={item.title}>{item.content}</Text>
+                                )
+                            }
+                        })}
                     </>
             }
 

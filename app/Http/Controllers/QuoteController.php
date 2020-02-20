@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Quote;
 
-class MandalaController extends Controller
+class QuoteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -68,7 +69,12 @@ class MandalaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = Quote::findOrFail($id);
+        $item->content = $request->content;
+        $item->color = $request->color;
+        $item->save();
+        $DOM_id = 'content-quote-'.$id;
+        return back()->with('success', $DOM_id);
     }
 
     /**
@@ -79,6 +85,9 @@ class MandalaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $quote = Quote::findOrFail($id);
+        $quote->delete();
+
+        return back()->with('delete', 'Quote has been deleted');
     }
 }

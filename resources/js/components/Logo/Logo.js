@@ -26,8 +26,17 @@ const styles = StyleSheet.create({
 
 const Logo = props => {
     const { setShow, show } = { ...props }
+
+    const toggleShow = () => {
+        if (show) {
+            setShow(false)
+        } else {
+            setShow('blog')
+        }
+    }
+
     return (
-        <div className={css(styles.logoContainer, show && styles.open)} onClick={setShow} />
+        <div className={css(styles.logoContainer, show && styles.open)} onClick={() => toggleShow()} />
     )
 }
 

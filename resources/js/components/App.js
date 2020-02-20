@@ -18,7 +18,7 @@ const App = () => {
                 <Nav show={show}>
                     <NavLink title={'Bowen Therapy'} icon={'leaf'} setShow={() => setShow('bowen')} />
                     <NavLink title={'Sound Healing'} icon={'bird'} setShow={() => setShow(true)} />
-                    <Logo setShow={() => setShow('blog')} show={show} />
+                    <Logo setShow={setShow} show={show} />
                     <NavLink title={'Energy Balancing'} icon={'energy'} setShow={() => setShow(true)} />
                     <NavLink title={'Meditation'} icon={'meditation'} setShow={() => setShow('meditation')} />
                 </Nav>
