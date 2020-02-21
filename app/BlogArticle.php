@@ -15,4 +15,8 @@ class BlogArticle extends Model
     {
         return $this->hasMany('App\Quote');
     }
+
+    protected $fillable = [
+        'title', 'item_photo_path'
+    ];
 }

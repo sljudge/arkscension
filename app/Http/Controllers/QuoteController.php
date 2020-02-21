@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Quote;
+use App\Text;
+use App\BlogArticle;
 
 class QuoteController extends Controller
 {
@@ -35,7 +37,20 @@ class QuoteController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->content);
+        //FIND ORDER
+        $article = BlogArticle::with('texts')->with('quotes')->findOrFail($request->blog_article_id);
+        $order = fix_order($article);
+
+        $item = Quote::create([
+            'blog_article_id' => $request->blog_article_id,
+            'type' => $request->type,
+            'order' => $order,
+            'color' => $request->color,
+            'content' => $request->content,
+        ]);
+        $item->save();
+        $DOM_id = 'content-'.$request->order;
+        return back()->with('success', $DOM_id);
     }
 
     /**
@@ -87,6 +102,10 @@ class QuoteController extends Controller
     {
         $quote = Quote::findOrFail($id);
         $quote->delete();
+
+        //FIND ORDER
+        $article = BlogArticle::with('texts')->with('quotes')->findOrFail($quote->blog_article_id);
+        fix_order($article);
 
         return back()->with('delete', 'Quote has been deleted');
     }

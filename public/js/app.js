@@ -34812,7 +34812,8 @@ var Blog = function Blog(props) {
   }, []);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     if (showItem !== false) {
-      var itemContents = [].concat(_toConsumableArray(items[showItem].texts), _toConsumableArray(items[showItem].quotes));
+      var itemContents = [].concat(_toConsumableArray(items[showItem].texts), _toConsumableArray(items[showItem].quotes)); //ARRAY HERE IS PROBLEM
+
       itemContents.sort(function (a, b) {
         return a.order - b.order;
       });
@@ -35256,7 +35257,7 @@ var styles = aphrodite__WEBPACK_IMPORTED_MODULE_1__["StyleSheet"].create({
     width: '100%',
     height: 'calc(100vh - 10rem)',
     // padding: '4rem',
-    margin: '35vh 0 35vh 0',
+    margin: '25vh 0 35vh 0',
     backgroundColor: 'rgba(256,256,256,0.8)',
     backgroundSize: 'auto 90%',
     backgroundPosition: 'center',
@@ -35275,7 +35276,7 @@ var Mandala = function Mandala(props) {
       color = _props.color;
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: Object(aphrodite__WEBPACK_IMPORTED_MODULE_1__["css"])(styles.mandalaContainer, color === 'blue' ? styles.blue : color === 'green' ? styles.green : null)
+    className: Object(aphrodite__WEBPACK_IMPORTED_MODULE_1__["css"])(styles.mandalaContainer, color === '1' ? styles.blue : color === '2' ? styles.green : null)
   }, props.children);
 };
 

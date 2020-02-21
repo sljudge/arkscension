@@ -1,4 +1,4 @@
-function addElemToSidePanel(typeOfElem) {
+function addElemToSidePanel(typeOfElem, contentId) {
     //Get side panel
     const sidePanel = document.getElementById('admin-side-panel')
     //Get add text btn so that elements can be added at before it
@@ -8,8 +8,7 @@ function addElemToSidePanel(typeOfElem) {
     elem.setAttribute('class', 'admin-side-panel--item')
     elem.textContent = typeOfElem
     //Get number of elements in content area for unique id
-    const numberOfElems = sidePanel.children.length
-    const id = `side-panel-${numberOfElems}`
+    const id = `side-panel-${contentId.slice(-2)}`
     elem.id = id
     //Apend to panel
     sidePanel.insertBefore(elem, addTextBtn)

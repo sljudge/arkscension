@@ -24,7 +24,7 @@ class BlogArticleController extends Controller
     public function index()
     {
         $articles = BlogArticle::with('texts')->with('quotes')->get();
-        return view('blog/articlesList', compact('articles'));
+        return view('edit/articlesList', compact('articles'));
     }
 
     /**
@@ -34,7 +34,7 @@ class BlogArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('edit/article');
     }
 
     /**
@@ -45,7 +45,17 @@ class BlogArticleController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump($request->title);
+        $item = BlogArticle::create([
+            'title' => $request->title ?? 'New Title',
+            'item_photo_path' => $request->item_photo_path ?? '/img/logo.svg'
+            ]);
+        $item->save();
+        $order = [
+            'id' => $item->id,
+            'title' => $item->title,
+            'item_photo_path' => $item->item_photo_path
+        ];
+        return view('edit/article')->with('order', $order)->with('success', 'blog-title');
     }
 
     /**
@@ -80,7 +90,7 @@ class BlogArticleController extends Controller
         foreach($article->quotes as $quote){
             $order[$quote->order] = $quote;
         }
-        return view('blog/article', compact('order'));
+        return view('edit/article', compact('order'));
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Text;
+use App\Quote;
+use App\BlogArticle;
 
 class TextController extends Controller
 {
@@ -35,7 +37,19 @@ class TextController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->content);
+        //FIND ORDER
+        $article = BlogArticle::with('texts')->with('quotes')->findOrFail($request->blog_article_id);
+        $order = fix_order($article);
+
+        $item = Text::create([
+            'blog_article_id' => $request->blog_article_id,
+            'type' => $request->type,
+            'order' => $order,
+            'content' => $request->content,
+        ]);
+        $item->save();
+        $DOM_id = 'content-'.$request->order;
+        return back()->with('success', $DOM_id);
     }
 
     /**
@@ -72,7 +86,7 @@ class TextController extends Controller
         $item = Text::findOrFail($id);
         $item->content = $request->content;
         $item->save();
-        $DOM_id = 'content-text-'.$id;
+        $DOM_id = 'content-'.$id;
         return back()->with('success', $DOM_id);
     }
 
@@ -86,6 +100,10 @@ class TextController extends Controller
     {
         $text = Text::findOrFail($id);
         $text->delete();
+
+        //FIND ORDER
+        $article = BlogArticle::with('texts')->with('quotes')->findOrFail($text->blog_article_id);
+        fix_order($article);
 
         return back()->with('delete', 'Text has been deleted');
     }

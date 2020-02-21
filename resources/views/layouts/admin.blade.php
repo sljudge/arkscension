@@ -29,12 +29,14 @@
       min-height: 100vh;
       min-width: 100vw;
       max-width: 100vw;
-      background-color: rgba(0,0,0,0.2);
+      background-color: rgba(30,30,30,0.2);
       text-rendering: optimizeLegibility;
     }
 
     .container {
         display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
         max-width: 100%;
     }
   </style>

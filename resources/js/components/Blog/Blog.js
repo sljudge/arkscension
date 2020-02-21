@@ -86,7 +86,7 @@ const Blog = props => {
 
     useEffect(() => {
         if (showItem !== false) {
-            const itemContents = [...items[showItem].texts, ...items[showItem].quotes]
+            const itemContents = [...items[showItem].texts, ...items[showItem].quotes] //ARRAY HERE IS PROBLEM
             itemContents.sort((a, b) => a.order - b.order)
             setOrder(itemContents)
         }

@@ -10,4 +10,8 @@ class Quote extends Model
     {
         return $this->belongsTo('App\BlogArticle');
     }
+
+    protected $fillable = [
+        'blog_article_id', 'type', 'order', 'color', 'content'
+    ];
 }
