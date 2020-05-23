@@ -25,7 +25,7 @@ const App = () => {
                 <ContentPanel show={show}>
                     {show === 'meditation' && <Meditation />}
                     {show === 'bowen' && <Bowen />}
-                    {show === 'blog' && <h1>BLWOG</h1>}
+                    {show === 'blog' && <h1>BLWOG BOGGERSON</h1>}
                     {/* {show === 'blog' && <Blog />} */}
 
 
