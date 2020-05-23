@@ -34675,7 +34675,7 @@ var App = function App() {
     }
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ContentPanel__WEBPACK_IMPORTED_MODULE_5__["default"], {
     show: show
-  }, show === 'meditation' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Meditation__WEBPACK_IMPORTED_MODULE_6__["default"], null), show === 'bowen' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Bowen__WEBPACK_IMPORTED_MODULE_7__["default"], null), show === 'blog' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Blog__WEBPACK_IMPORTED_MODULE_8__["default"], null))));
+  }, show === 'meditation' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Meditation__WEBPACK_IMPORTED_MODULE_6__["default"], null), show === 'bowen' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Bowen__WEBPACK_IMPORTED_MODULE_7__["default"], null), show === 'blog' && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "BLWOG"))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -35902,8 +35902,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\dev\arkscension\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\dev\arkscension\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\arkscension\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\arkscension\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
