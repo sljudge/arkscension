@@ -14,14 +14,16 @@
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/admin', function () {
-    return view('layouts/admin');
+
+// -- ADMIN -- //
+
+Route::post('/admin/updateBlocks/{pageId}', 'PageController@updateBlocks');
+
+Route::post('/admin/create', 'PageController@create');
+
+Route::post('/admin/destroy/{pageId}', 'PageController@destroy');
+
+Route::get('/admin', function(){
+    return view('admin');
 });
-// BLOG
-Route::resource('/admin/blog', 'BlogArticleController');
 
-//TEXTS
-Route::resource('/admin/texts', 'TextController');
-
-//MANDALAS
-Route::resource('/admin/quotes', 'QuoteController');

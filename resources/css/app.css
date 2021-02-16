@@ -1,0 +1,88 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.ce-block__content {
+    @apply max-w-full border-b border-gray-400;
+}
+.ce-paragraph{
+    @apply px-8;
+}
+.ce-header{
+    padding: 0 2rem !important;
+}
+.ce-toolbar{
+    @apply z-50 mt-12;
+}
+.ce-toolbar__content{
+    @apply max-w-screen-xl;
+}
+.ce-toolbar__settings-btn{
+    @apply bg-orange-500 p-2 rounded-full opacity-50 -mr-24 h-8 w-8;
+}
+.ce-toolbar__settings-btn:hover{
+    @apply opacity-100;
+}
+
+h1{
+    @apply text-5xl;
+}
+h2{
+    @apply text-4xl;
+}
+h3{
+    @apply text-3xl;
+}
+h4{
+    @apply text-2xl;
+}
+h5{
+    @apply text-xl;
+}
+h6{
+    @apply text-lg;
+}
+
+.image-handler-icon{
+    font-style: normal !important;
+    @apply text-gray-800;
+    @apply text-5xl;
+}
+.img-placeholder{
+    @apply w-20;
+    @apply h-20;
+    @apply p-4;
+    @apply rounded-lg;
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
+}
+
+.green-mandala{
+    background-image: url('/img/mandalas/green_small.png');
+}
+
+.blue-mandala{
+    background-image: url('/img/mandalas/blue_small.png');
+}
+
+.brown-mandala{
+    background-image: url('/img/mandalas/brown.svg');
+}
+
+.dark-mandala{
+    background-image: url('/img/mandalas/dark.svg');
+}
+
+.pink-mandala{
+    background-image: url('/img/mandalas/pink.svg');
+}
+
+.guilloche-mandala{
+    background-image: url('/img/mandalas/guilloche.svg');
+}
+
+
+

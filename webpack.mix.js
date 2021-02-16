@@ -11,7 +11,10 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.react('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
+mix.react('resources/js/index.js', 'public/js')
+    .react('resources/js/editor.js', 'public/js')
+    .postCss('resources/css/app.css', 'public/css', [
+        require('tailwindcss'),
+    ])
     .copyDirectory('resources/img', 'public/img')
     .copyDirectory('resources/js/helpers', 'public/js/helpers')

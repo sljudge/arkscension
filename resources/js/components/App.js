@@ -1,36 +1,61 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from "react";
+//components
+import { Nav } from './Nav'
+import { MainBtn } from './Misc'
+import Banner from './Banner'
 
-import Cover from './Cover'
-import Nav from './Nav'
-import NavLink from './NavLink'
-import Logo from './Logo'
-import ContentPanel from './ContentPanel'
-import Meditation from './Meditation'
-import Bowen from './Bowen'
-import Blog from './Blog'
+const App = props => {
+    const [pages, setPages] = useState([])
+    const [activePage, setActivePage] = useState()
 
-const App = () => {
-    const [show, setShow] = useState(false)
+    const getData = async () => {
+        const response = await fetch('/api/pages')
+        const data = await response.json()
+        data.forEach(page => {
+            page.blocks = page.blocks ? JSON.parse(page.blocks) : []
+        })
+        setPages(data)
+    }
+
+
+    useEffect(() => {
+        getData()
+    }, [])
+
+    useEffect(() => {
+        if (pages && !activePage) {
+            setActivePage(pages[0])
+        }
+    }, [pages])
+
 
     return (
         <>
-            <Cover>
-                <Nav show={show}>
-                    <NavLink title={'Bowen Therapy'} icon={'leaf'} setShow={() => setShow('bowen')} />
-                    <NavLink title={'Sound Healing'} icon={'bird'} setShow={() => setShow(true)} />
-                    <Logo setShow={setShow} show={show} />
-                    <NavLink title={'Energy Balancing'} icon={'energy'} setShow={() => setShow(true)} />
-                    <NavLink title={'Meditation'} icon={'meditation'} setShow={() => setShow('meditation')} />
-                </Nav>
-                <ContentPanel show={show}>
-                    {show === 'meditation' && <Meditation />}
-                    {show === 'bowen' && <Bowen />}
-                    {show === 'blog' && <h1>BLWOG BOGGERSON</h1>}
-                    {/* {show === 'blog' && <Blog />} */}
+            {
+                !!activePage &&
+                <>
+                    <Nav pages={pages} setPages={setPages} activePage={activePage} setActivePage={setActivePage} isAdmin={false} />
+
+                </>
+            }
+            <div className="h-screen bg-center bg-cover bg-no-repeat relative" style={{ backgroundImage: 'url(/img/tree.jpg)', height: 'calc(100vh - 4rem)' }}>
+                <div className="flex justify-center items-center absolute bottom-0 right-0 left-0" >
+                    <h1 className="text-white py-4">Arkscension</h1>
+                </div>
+            </div>
+
+            {!!activePage && activePage.blocks.map(block => {
+                console.log(block)
+                const data = block.data
+                switch (block.type) {
+                    case ('banner'):
+                        return <Banner header={data.header} subHeader={data.subHeader} imgUrl={data.imgUrl} white={data.white} />
+                    default:
+                        break;
+                }
+            })}
 
 
-                </ContentPanel>
-            </Cover>
         </>
     )
 }
